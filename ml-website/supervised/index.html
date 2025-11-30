@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Supervised Learning | Global Superstore</title>
+  <!-- FIXED PATHS -->
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="supervised.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="../preparation/index.html">← Data Preparation</a>
+      <a href="../index.html">Home</a>
+      <a href="../unsupervised/index.html">Next: Unsupervised →</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="container">
+      <h1>Supervised Learning</h1>
+      <p class="lead">
+        Using labeled data to predict <strong>Sales</strong> (Regression)<br>
+        and potentially classify customer segments (Classification – coming soon)
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <h3>51,235</h3>
+          <p>Cleaned Orders</p>
+        </div>
+        <div class="stat">
+          <h3>16</h3>
+          <p>Features Used</p>
+        </div>
+        <div class="stat">
+          <h3>0.784</h3>
+          <p>Best R² (so far)</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container content">
+
+    <section class="intro">
+      <h2>What is Supervised Learning?</h2>
+      <p>
+        In supervised learning, we train models on <strong>labeled data</strong> — each row has a known target (here: <code>Sales</code>).<br>
+        The model learns to map inputs → outputs and can then predict on new, unseen data.
+      </p>
+      <p>Two main tasks:</p>
+      <ul>
+        <li><strong>Regression</strong> → Predict continuous values (e.g., Sales amount)</li>
+        <li><strong>Classification</strong> → Predict categories (e.g., High/Low profit customer)</li>
+      </ul>
+    </section>
+
+    <!-- Regression Card -->
+    <section class="model-card">
+      <div class="card-header regression">
+        <h2>Regression Analysis</h2>
+        <span class="tag completed">Completed</span>
+      </div>
+      <div class="card-body">
+        <p>We built and compared multiple regression models to predict <strong>Sales</strong>:</p>
+        <ul>
+          <li>Linear Regression → R² = 0.673</li>
+          <li>Polynomial Regression (Degree 2 + Ridge) → <strong>R² = 0.784</strong></li>
+          <li>From-scratch Gradient Descent → matched scikit-learn!</li>
+          <li>Used BIC to prove Degree 2 is optimal</li>
+        </ul>
+        <p><strong>Winner:</strong> Polynomial Degree 2 + Ridge (MAE = $110.3)</p>
+        <a href="regression/index.html" class="btn primary">Explore Regression Models →</a>
+      </div>
+      <div class="card-image">
+        <img src="regression/images/polynomial_curves.png" alt="Polynomial vs Linear" />
+      </div>
+    </section>
+
+    <!-- Classification Card (Future) -->
+    <section class="model-card disabled">
+      <div class="card-header classification">
+        <h2>Classification (Coming Soon)</h2>
+        <span class="tag soon">In Progress</span>
+      </div>
+      <div class="card-body">
+        <p>Next: Predict customer segments or high-profit orders using:</p>
+        <ul>
+          <li>Logistic Regression</li>
+          <li>Random Forest Classifier</li>
+          <li>XGBoost + SHAP explanations</li>
+        </ul>
+        <a href="#" class="btn disabled">Coming Soon</a>
+      </div>
+      <div class="card-image placeholder">
+        <p>Classification models<br>under development...</p>
+      </div>
+    </section>
+
+    <!-- Final Ensemble Teaser -->
+    <section class="teaser">
+      <div class="container">
+        <h2>Next Level: The Final Ensemble</h2>
+        <p>
+          After regression, we combine the best models (Polynomial + Tree-based) into a <strong>voting/stacking ensemble</strong><br>
+          Expected performance: <strong>R² > 0.96</strong> and <strong>MAE < $55</strong>
+        </p>
+        <div class="coming-soon">
+          <h3>Coming in the next section</h3>
+          <p>Random Forest • XGBoost • LightGBM • Stacking • Final Champion Model</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p>Global Superstore Sales Prediction Project © 2025</p>
+    </div>
+  </footer>
+
+</body>
+</html>

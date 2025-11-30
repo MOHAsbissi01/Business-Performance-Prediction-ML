@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regression Analysis | Global Superstore Sales</title>
+  <link rel="stylesheet" href="../../style.css"/>
+  <link rel="stylesheet" href="regression.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <div class="container">
+      <a href="../index.html">← Supervised Learning</a>
+      <a href="../../index.html">Home</a>
+      <a href="#">Next: Final Ensemble →</a>
+    </div>
+  </nav>
+
+  <div class="container content">
+
+    <header class="page-header">
+      <h1>Regression Analysis</h1>
+      <p class="lead">Predicting Sales using Linear, Gradient Descent, and Polynomial Regression<br>
+        <strong>Final Winner: Polynomial Degree 2 + Ridge → R² = 0.784</strong>
+      </p>
+    </header>
+
+    <!-- 1. Linear Regression (sklearn) -->
+    <section class="model-section">
+      <h2>1. Linear Regression (Baseline)</h2>
+      <div class="results-grid">
+        <div class="metric">Test R²<br><strong>0.6728</strong></div>
+        <div class="metric">Test MAE<br><strong>$139.2</strong></strong></div>
+        <div class="metric">Train R²<br>0.7365</div>
+      </div>
+      <img src="images/linear_4plots.png" alt="Linear Regression 4 Plots" class="full-width"/>
+      <pre><code class="language-text">
+Original shape: (51290, 24) → After cleaning: (51235, 24)
+Training samples: 40,988 | Testing samples: 10,247 | Features: 16
+Linear Regression trained successfully!
+→ Test R² ≈ 0.673 (explains ~67% of variance)
+→ Test MAE ≈ $139.2 (still high)
+→ Clear patterns in residuals → non-linear relationships dominate
+Conclusion: Great baseline! But tree-based models remain far superior.
+Model saved → linear_regression_final.pkl
+      </code></pre>
+      <div class="insight">Residuals show systematic curvature → linear model is too simple.</div>
+    </section>
+
+    <!-- 2. Gradient Descent from Scratch -->
+    <section class="model-section bonus">
+      <h2>2. Linear Regression from Scratch (Gradient Descent)</h2>
+      <p>Implemented using only 4 numerical features: <code>Quantity, Discount, Profit, Shipping Cost</code></p>
+      <img src="images/gd_convergence.png" alt="Gradient Descent Learning Rates" class="full-width"/>
+      <pre><code class="language-text">
+WINNER → Learning Rate = 0.1
+   Test R²  = 0.6804 | Test MAE = $119.8
+   Very close to scikit-learn (R²=0.673, MAE=$139.2)
+
+Key Learnings:
+• Gradient Descent successfully recovered sklearn performance!
+• Learning rate 0.05–0.1 → fastest convergence
+• Too large (0.3) → diverged
+• Feature scaling is CRITICAL
+      </code></pre>
+      <div class="insight success">We now understand Linear Regression at the mathematical core!</div>
+    </section>
+
+    <!-- 3. 3D Visualization -->
+    <section class="model-section">
+      <h2>3. 3D Visualization: Why Linear Fails</h2>
+      <img src="images/3d_plane.png" alt="3D Linear Regression Plane" class="full-width"/>
+      <div class="insight">
+        <strong>Plane equation:</strong> Sales ≈ 28 + 71×Quantity − 184×Discount<br>
+        → More Quantity = Higher Sales | Higher Discount = Lower Sales<br>
+        BUT: Many points far from the plane → strong non-linearity!<br>
+        This is why Polynomial Degree 2 improved R² from 0.67 → 0.78
+      </div>
+    </section>
+
+    <!-- 4. Polynomial Degree Selection (BIC) -->
+    <section class="model-section">
+      <h2>4. Optimal Polynomial Degree (BIC Criterion)</h2>
+      <div class="image-row">
+        <img src="images/bic_curve.png" alt="BIC vs Degree"/>
+        <img src="images/poly_degree8_fit.png" alt="Degree 8 Fit on Discount"/>
+      </div>
+      <pre><code class="language-text">
+Best polynomial degree according to BIC: 8
+Lowest BIC: 632941.23
+
+Degree   # Params   BIC             Status
+8        9          632941.23       BEST
+      </code></pre>
+      <div class="warning">
+        Warning: Degree 8 fits training data perfectly but explodes on test set (R² = −67,495!)
+      </div>
+    </section>
+
+    <!-- 5. Final Polynomial + Ridge (Memory-Safe) -->
+    <section class="model-section highlight">
+      <h2>5. Final Model: Polynomial Degree 2 + Ridge (Winner!)</h2>
+      <p>Applied Polynomial Features <strong>only on 4 numerical columns</strong> + Ridge regularization</p>
+      <div class="results-grid">
+        <div class="metric best">Test R²<br><strong>0.7839</strong> ↑ +16%</div>
+        <div class="metric best">Test MAE<br><strong>$110.3</strong> ↓ −$29</div>
+        <div class="metric best">Degree 8<br>R² = −67,495 (overfit)</div>
+      </div>
+      <div class="image-row">
+        <img src="images/degree_vs_performance.png" alt="Degree vs Performance"/>
+        <img src="images/sales_vs_discount.png" alt="Sales vs Discount Curve"/>
+        <img src="images/residuals_degree2.png" alt="Residuals"/>
+        <img src="images/residual_distribution.png" alt="Residual Distribution"/>
+      </div>
+      <pre><code class="language-text">
+Best model: Degree 2 with Test R² = 0.7839
+Improvement vs Linear → R² +12% | MAE -$40
+Model saved → polynomial_ridge_best.pkl
+      </code></pre>
+      <div class="insight success">
+        <strong>Official Winner:</strong> Polynomial Degree 2 + Ridge<br>
+        Captures non-linear Discount effect perfectly<br>
+        Ready for the FINAL ENSEMBLE → R² > 0.96 & MAE < $55
+      </div>
+    </section>
+
+    <!-- Download -->
+    <div class="download-section">
+      <h2>Download the Best Regression Model</h2>
+      <a href="downloads/polynomial_ridge_best.pkl" class="btn download-btn" download>
+        polynomial_ridge_best.pkl (R² = 0.784)
+      </a>
+      <p>The strongest standalone regression model — ready for production or ensemble!</p>
+    </div>
+
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p>Global Superstore Sales Prediction Project © 2025 | Next: Final Champion Ensemble (R² > 0.96)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

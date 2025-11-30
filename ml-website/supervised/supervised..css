@@ -1,0 +1,103 @@
+/* supervised/supervised.css */
+.hero-section {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  border-radius: 0 0 50px 50px;
+}
+.hero-section h1 { font-size: 3.5rem; margin-bottom: 20px; }
+.lead { font-size: 1.4rem; opacity: 0.95; }
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.stat h3 { font-size: 3rem; margin: 0; }
+.stat p { margin: 5px 0 0; opacity: 0.9; }
+
+.content { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+.intro { text-align: center; margin-bottom: 80px; font-size: 1.2rem; line-height: 1.8; }
+
+.model-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  margin: 60px 0;
+  transition: transform 0.3s;
+}
+.model-card:hover { transform: translateY(-10px); }
+.model-card.disabled { opacity: 0.6; pointer-events: none; }
+
+.card-header {
+  padding: 30px;
+  color: white;
+  position: relative;
+}
+.card-header.regression { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.card-header.classification { background: linear-gradient(135deg, #fa709a, #fee140); }
+.card-header h2 { font-size: 2.2rem; margin: 0; }
+.tag {
+  position: absolute;
+  top: 20px; right: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.tag.completed { background: #4caf50; }
+.tag.soon { background: #ff9800; }
+
+.card-body {
+  padding: 40px;
+}
+.card-body ul { margin: 20px 0; padding-left: 20px; }
+.card-body li { margin: 10px 0; }
+.btn.primary {
+  background: #667eea;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.btn.disabled { background: #ccc; cursor: not-allowed; }
+
+.card-image {
+  text-align: center;
+  background: #f8f9fa;
+  padding: 20px;
+}
+.card-image img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.placeholder {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.teaser {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 20px;
+  margin: 100px 0;
+}
+.coming-soon {
+  margin-top: 30px;
+  padding: 30px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  font-size: 1.3rem;
+}
