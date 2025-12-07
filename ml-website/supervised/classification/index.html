@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classification - Profit Class | Global Superstore</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../style.css"/>
+  <link rel="stylesheet" href="../supervised.css"/>
+  <link rel="stylesheet" href="classification.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Force un affichage 100% vertical propre */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .content { display: flex; flex-direction: column; gap: 40px; padding: 40px 0; }
+    img { 
+      width: 100%; 
+      height: auto; 
+      border-radius: 12px; 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1); 
+      margin: 20px 0; 
+    }
+    .model-card, .intro, .model-grid { 
+      background: white; 
+      padding: 30px; 
+      border-radius: 16px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    }
+    .card-header {
+      padding: 15px 20px;
+      border-radius: 12px 12px 0 0;
+      margin: -30px -30px 25px -30px;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .classification { background: linear-gradient(135deg, #667eea, #764ba2); }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f8f9fa; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="container">
+      <a href="../index.html">Supervised Learning</a>
+      <a href="../../preparation/prep.html">Préparation</a>
+      <a href="../../index.html">Accueil</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero-section" style="background: linear-gradient(135deg, #f093fb, #f5576c); color:white; padding:80px 20px; text-align:center;">
+    <div class="container">
+      <h1>Classification</h1>
+      <p class="lead" style="font-size:1.4rem; margin:20px 0;">
+        Prédire la classe de profit d’une commande :<br>
+        <strong>Low</strong> · <strong>Medium</strong> · <strong>High</strong>
+      </p>
+      <div class="stats" style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin-top:40px;">
+        <div class="stat">
+          <h3>51 290</h3>
+          <p>Commandes</p>
+        </div>
+        <div class="stat">
+          <h3>3 classes</h3>
+          <p>Parfaitement équilibrées</p>
+        </div>
+        <div class="stat">
+          <h3>74.3%</h3>
+          <p>Meilleure Accuracy</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container content">
+
+    <!-- Introduction -->
+    <section class="intro">
+      <h2>Objectif de la Classification</h2>
+      <p>
+        Nous avons créé une cible <code>Profit_Class</code> en découpant la variable <code>Profit</code> en trois classes équilibrées :
+      </p>
+      <ul style="font-size:1.1rem; line-height:1.8;">
+        <li><strong>Low</strong>    → 17 099 commandes</li>
+        <li><strong>Medium</strong> → 17 097 commandes</li>
+        <li><strong>High</strong>   → 17 094 commandes</li>
+      </ul>
+      <p style="margin-top:15px;">Train = 41 032 | Test = 10 258 → <strong>distribution préservée</strong></p>
+    </section>
+
+    <!-- Résultats globaux + Matrice de confusion -->
+    <section class="model-card">
+      <div class="card-header classification">
+        <h2>Résultats des Modèles</h2>
+        <span class="tag completed" style="background:rgba(255,255,255,0.3); padding:4px 12px; border-radius:20px; font-size:0.9rem;">Terminé</span>
+      </div>
+
+      <h3 style="color:#f5576c; margin:20px 0 10px;">Top 5 Modèles</h3>
+      <table class="result-table">
+        <thead>
+          <tr><th>Modèle</th><th>Accuracy</th><th>F1-macro</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>XGBoost</strong></td>               <td><strong>74.33%</strong></td><td>0.74</td></tr>
+          <tr><td><strong>CatBoost (optimisé)</strong></td>   <td>74.3%</td><td>0.74</td></tr>
+          <tr><td>Random Forest</td>                     <td>73.0%</td><td>0.73</td></tr>
+          <tr><td>SVM (RBF)</td>                         <td>72.5%</td><td>0.73</td></tr>
+          <tr><td>KNN</td>                               <td>65.3%</td><td>0.66</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:20px;"><strong>Champion :</strong> XGBoost &amp; CatBoost (ex aequo)</p>
+
+      <img src="images/XGboost.png" alt="Matrice de confusion (XGBoost)"/>
+    </section>
+
+    <!-- XGBoost -->
+    <section class="model-card">
+      <div class="card-header" style="background:#11998e;">
+        <h2>XGBoost – Champion</h2>
+      </div>
+      <p><strong>Accuracy :</strong> 74.33% • <strong>PR AUC macro :</strong> 0.80</p>
+      <ul style="margin:15px 0; line-height:1.7;">
+        <li>Classe <strong>Low</strong> : meilleur recall (87% précision)</li>
+        <li>Classe <strong>High</strong> : meilleur recall (81% rappel)</li>
+        <li>Très bon équilibre malgré la complexité du problème à 3 classes</li>
+      </ul>
+      <img src="images/XGboost.png" alt="XGBoost Classification Report & Metrics"/>
+    </section>
+
+    <!-- CatBoost -->
+    <section class="model-card">
+      <div class="card-header" style="background:#38ef7d; color:#000;">
+        <h2>CatBoost – Vice-Champion</h2>
+      </div>
+      <p style="margin-bottom:20px;">Après optimisation Hyperopt → mêmes performances que XGBoost</p>
+      <img src="images/catboost.png" alt="CatBoost Classification Report"/>
+      <img src="images/boxplot-catboost.png" alt="Feature Importance CatBoost"/>
+    </section>
+
+    <!-- Autres modèles (stackés verticalement) -->
+    <section class="model-card">
+      <div class="card-header classification">
+        <h2>Autres modèles testés</h2>
+      </div>
+
+      <div style="text-align:center;">
+        <h3 style="margin:20px 0 10px; color:#f5576c;">Random Forest – 73.0%</h3>
+        <img src="images/Confusion Matrix RandomForest.png" alt="Random Forest"/>
+        
+        <h3 style="margin:30px 0 10px; color:#f5576c;">SVM (RBF) – 72.5%</h3>
+        <img src="images/SVM.png" alt="SVM"/>
+        
+        <h3 style="margin:30px 0 10px; color:#f5576c;">KNN – 65.3%</h3>
+        <img src="images/KNN.png" alt="KNN"/>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <div style="text-align:center; padding:60px 30px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:20px;">
+      <h2 style="color:white; font-size:2rem;">Conclusion Classification</h2>
+      <p style="font-size:1.4rem; line-height:1.8; max-width:800px; margin:30px auto;">
+        XGBoost et CatBoost dominent avec <strong>~74.3% d’accuracy</strong> sur un problème équilibré à 3 classes.<br><br>
+        23 features sélectionnées (sur 45 après encodage) → modèle léger et interprétable.<br><br>
+        <strong>Prêt pour le stacking final avec la régression !</strong>
+      </p>
+    </div>
+
+  </div>
+
+  <footer class="page-footer" style="margin-top:80px; padding:40px 0; background:#222; color:#aaa; text-align:center;">
+    <div class="container">
+      <p>Global Superstore Sales Prediction Project © 2025</p>
+    </div>
+  </footer>
+</body>
+</html>

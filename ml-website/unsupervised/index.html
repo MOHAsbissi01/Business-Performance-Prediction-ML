@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unsupervised Learning | Global Superstore</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="unsupervised.css">
+</head>
+<body>
+
+  <!-- ====================== HERO ====================== -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>
+          Unsupervised<br>
+          <span class="gradient-title">Learning</span>
+        </h1>
+        <p class="lead">
+          Découvrir des patterns cachés sans aucune cible<br>
+          <strong>Segmentation • Réduction de dimension • Insights business</strong>
+        </p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <h2>51 290</h2>
+          <p>Commandes analysées</p>
+        </div>
+        <div class="stat">
+          <h2>3</h2>
+          <p>Clusters optimaux<br><small>K-Means · DBSCAN · RFM</small></p>
+        </div>
+        <div class="stat">
+          <h2>89.2<span>%</span></h2>
+          <p>Variance expliquée<br><small>PC1 + PC2 + PC3</small></p>
+        </div>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <path d="M0,100 C320,200 520,50 720,100 C920,150 1120,50 1440,100 L1440,220 L0,220 Z"></path>
+    </svg>
+  </header>
+
+  <div class="container content">
+
+    <!-- ====================== 01 PCA ====================== -->
+    <section class="section pca">
+      <div class="section-header">
+        <span class="num">01</span>
+        <h2>Analyse en Composantes Principales</h2>
+        <p class="tagline">18 variables numériques → 4 composantes expliquant 100 % de la variance</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <img src="images/plotVariance1.png" alt="Éboulis">
+          <div class="card-body">
+            <h4>Éboulis des valeurs propres</h4>
+            <p>PC1 = <strong>42.97 %</strong> · PC2 = <strong>26.68 %</strong> · PC3 = <strong>19.55 %</strong></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="images/cercleCorrelation1.png" alt="Cercle des corrélations">
+          <div class="card-body">
+            <h4>Cercle des corrélations</h4>
+            <p>PC1 : Sales • Shipping Cost • Profit<br>PC2 : Discount ↔ Profit (opposition)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <strong>Insight clé :</strong> 3 composantes suffisent pour capturer <strong>89.2 %</strong> de l’information → base parfaite pour le clustering.
+      </div>
+    </section>
+
+    <!-- ====================== 02 Clustering ====================== -->
+    <section class="section clustering">
+      <div class="section-header">
+        <span class="num">02</span>
+        <h2>Clustering : K-Means vs DBSCAN</h2>
+        <p class="tagline">Tous les algorithmes convergent vers 3 clusters clients profils</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card small">
+          <img src="images/k-means4.png" alt="Silhouette score">
+          <h4>Silhouette Score</h4>
+          <p>Maximum à <strong>K = 3</strong> (0.5145)</p>
+        </div>
+        <div class="card small">
+          <img src="images/ClusterKmeansPlanFactoriel.png" alt="K-Means">
+          <h4>K-Means sur PC1/PC2</h4>
+          <p>3 clusters bien séparés</p>
+        </div>
+        <div class="card small">
+          <img src="images/ClusterDBSCAN3.png" alt="DBSCAN">
+          <h4>DBSCAN (eps=1.1)</h4>
+          <p>3 clusters + seulement 57 outliers (0.11 %)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 03 RFM ====================== -->
+    <section class="section rfm">
+      <div class="section-header">
+        <span class="num">03</span>
+        <h2>Segmentation RFM</h2>
+        <p class="tagline">1 590 clients → 3 profils actionnables</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <img src="images/ElbowMethod.png" alt="Elbow RFM">
+          <h4>Méthode du coude</h4>
+        </div>
+        <div class="card">
+          <img src="images/ClustersRacencyFreqMonetary.png" alt="Boxplots RFM">
+          <h4>Distribution R·F·M par cluster</h4>
+        </div>
+      </div>
+
+      <table class="rfm-table">
+        <thead>
+          <tr>
+            <th>Cluster</th>
+            <th>Clients</th>
+            <th>Recency</th>
+            <th>Frequency</th>
+            <th>Monetary</th>
+            <th>Profil</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="premium">
+            <td>Premium</td>
+            <td>804</td>
+            <td>29 jours</td>
+            <td>52 achats</td>
+            <td>13 625 $</td>
+            <td>Client VIP</td>
+          </tr>
+          <tr>
+            <td>Fidèle récent</td>
+            <td>320</td>
+            <td>28 jours</td>
+            <td>15 achats</td>
+            <td>2 357 $</td>
+            <td>À chouchouter</td>
+          </tr>
+          <tr class="risk">
+            <td>À risque</td>
+            <td>466</td>
+            <td>222 jours</td>
+            <td>11 achats</td>
+            <td>1 785 $</td>
+            <td>Réactivation urgente</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ====================== 04 Préférences produits ====================== -->
+    <section class="section prefs">
+      <div class="section-header">
+        <span class="num">04</span>
+        <h2>Segmentation par Préférence Produit</h2>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <img src="images/NombredeCluser.png" alt="Elbow préférence">
+          <h4>Elbow → K=3</h4>
+        </div>
+        <div class="card">
+          <img src="images/ProfitsdeReference.png" alt="Heatmap préférences">
+          <h4>Heatmap des dépenses par sous-catégorie</h4>
+        </div>
+      </div>
+
+      <div class="preferences">
+        <div class="pref">
+          <strong>792 clients</strong> → Phones · Bookcases · Chairs
+        </div>
+        <div class="pref>
+          <strong>564 clients</strong> → Copiers · Appliances · Tables
+        </div>
+        <div class="pref">
+          <strong>234 clients</strong> → Storage · Art · Furnishings
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 05 Analyses complémentaires ====================== -->
+    <section class="section extra">
+      <div class="section-header">
+        <span class="num">05</span>
+        <h2>Insights Géographiques & Saisonniers</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card small">
+          <img src="images/AnalysePerformanceCroisee.png" alt="Region x Segment">
+          <h4>Performance Région × Segment</h4>
+        </div>
+        <div class="card small">
+          <img src="images/VentesVSProfit.png" alt="Ventes vs Profit pays">
+          <h4>Top 10 pays</h4>
+        </div>
+        <div class="card small">
+          <img src="images/TendanceSai.png" alt="Saisonnalité">
+          <h4>Tendances mensuelles</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CONCLUSION ====================== -->
+    <div class="conclusion">
+      <h2>Conclusion Unsupervised</h2>
+      <p class="big">
+        3 profils clients cohérents retrouvés par <strong>toutes</strong> les méthodes<br>
+        → <strong>Premium</strong> · <strong>Fidèle récent</strong> · <strong>À risque</strong>
+      </p>
+      <p>
+        Ces segments sont directement exploitables en marketing :<br>
+        campagnes ciblées, programmes de fidélisation, réactivation, pricing dynamique…
+      </p>
+      <div class="cta">
+        Prochaine étape : <strong>Champion Model Supervisé + Features Unsupervised</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Global Superstore Sales Prediction © 2025 – Unsupervised Learning</p>
+    </div>
+  </footer>
+
+</body>
+</html>

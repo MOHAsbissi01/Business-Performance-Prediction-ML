@@ -1,0 +1,144 @@
+/* ============================================= */
+/*  UNSUPERVISED.CSS – VERSION PREMIUM 2025     */
+/* ============================================= */
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Poppins', sans-serif; background:#f8fafc; color:#1e293b; line-height:1.6; }
+
+.container { max-width:1280px; margin:0 auto; padding:0 40px; }
+@media (max-width:768px) { .container { padding:0 20px; }}
+
+/* ====================== HERO ====================== */
+.hero {
+  position:relative;
+  min-height:100vh;
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+  color:white;
+  overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 20% 80%, rgba(45,212,191,0.4), transparent 50%);
+}
+.hero-content {
+  position:relative;
+  padding:160px 0 120px;
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.gradient-title {
+  background: linear-gradient(90deg, #ccfbf1, #ffffff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:5.5rem;
+  font-weight:800;
+}
+.lead { font-size:1.8rem; font-weight:500; margin:24px 0 40px; opacity:0.95; }
+.hero-stats { display:flex; flex-direction:column; gap:32px; }
+.stat h2 { font-size:4.5rem; font-weight:800; margin-bottom:8px; }
+.stat p { font-size:1.1rem; opacity:0.9; }
+.stat small { font-size:0.9rem; opacity:0.8; }
+.wave { position:absolute; bottom:0; width:100%; height:220px; fill:#f8fafc; }
+
+/* ====================== SECTIONS ====================== */
+.section { padding:120px 0; }
+.section-header { text-align:center; margin-bottom:80px; }
+.num {
+  display:inline-block;
+  background:#14b8a6;
+  color:white;
+  width:70px; height:70px; line-height:70px;
+  border-radius:50%;
+  font-size:2rem; font-weight:bold;
+  margin-bottom:20px;
+}
+.section-header h2 { font-size:3.2rem; color:#0d9488; margin:20px 0; }
+.tagline { font-size:1.4rem; color:#475569; max-width:800px; margin:0 auto; }
+
+/* Grids */
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(500px,1fr)); gap:40px; margin:60px 0; }
+.grid-3 { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:40px; margin:60px 0; }
+
+/* Cards */
+.card {
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,0.1);
+  transition:transform 0.4s;
+}
+.card:hover { transform:translateY(-15px); }
+.card img { width:100%; height:340px; object-fit:contain; background:#ecfeff; }
+.card-body { padding:30px; background:linear-gradient(to bottom, #f0fdfa, #ccfbf1); }
+.card-body h4 { color:#0d9488; margin-bottom:12px; }
+.small img { height:260px; }
+
+/* Insight box */
+.insight {
+  background:linear-gradient(135deg, #14b8a6, #0d9488);
+  color:white;
+  padding:40px;
+  border-radius:16px;
+  text-align:center;
+  font-size:1.3rem;
+  max-width:900px;
+  margin:60px auto;
+  box-shadow:0 20px 40px rgba(20,185,166,0.3);
+}
+
+/* RFM Table */
+.rfm-table {
+  width:100%;
+  border-collapse:collapse;
+  margin:50px 0;
+  font-size:1.15rem;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.rfm-table th {
+  background:#0d9488;
+  color:white;
+  padding:20px;
+}
+.rfm-table td { padding:18px; text-align:center; border-bottom:1px solid #e2e8f0; }
+.rfm-table tr.premium { background:#d4f8f1; font-weight:bold; }
+.rfm-table tr.risk { background:#fee2e2; }
+
+/* Preferences */
+.preferences {
+  display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin:50px 0;
+}
+.pref {
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  font-size:1.2rem;
+  min-width:300px;
+  text-align:center;
+}
+
+/* Conclusion */
+.conclusion {
+  background:linear-gradient(135deg, #0d9488, #14b8a6);
+  color:white;
+  padding:100px 40px;
+  border-radius:24px;
+  text-align:center;
+  margin:100px 0;
+  box-shadow:0 25px 60px rgba(0,0,0,0.2);
+}
+.conclusion h2 { font-size:3.5rem; margin-bottom:30px; }
+.conclusion .big { font-size:1.8rem; margin:30px 0; font-weight:500; }
+.cta { margin-top:40px; font-size:1.4rem; font-weight:600; }
+
+/* Footer */
+.footer { background:#0f766e; color:#ccfbf1; text-align:center; padding:50px 20px; margin-top:120px; }
+
+/* Responsive */
+@media (max-width:992px) {
+  .hero-content { grid-template-columns:1fr; text-align:center; padding:120px 0 100px; }
+  .gradient-title { font-size:4.2rem; }
+  .grid, .grid-3 { grid-template-columns:1fr; }
+}

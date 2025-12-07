@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Préparation du Dataset - Global Superstore</title>
+  <link rel="stylesheet" href="prep.css"/>
+  <link rel="stylesheet" href="../assets/style.css"/>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f9fc; color: #2d3748; line-height: 1.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    h1, h2, h3 { color: #4c51bf; }
+    .lead { font-weight: 600; font-size: 1.1rem; }
+    .step { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 30px 0; }
+    .image { text-align: center; margin: 40px 0; }
+    .image img { max-width: 100%; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .image p { margin-top: 12px; font-style: italic; color: #718096; }
+    .badge { display: inline-block; background: #48bb78; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+    code { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-size: 0.95em; }
+    pre { background: #1a202c; color: #e0e0e0; padding: 20px; border-radius: 10px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px; text-align: center; border: 1px solid #e2e8f0; }
+    th { background: #4c51bf; color: white; }
+    .corr-high { background: #fed7d7; font-weight: bold; }
+    .corr-med { background: #feebc8; }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav" style="background:#4c51bf; color:white; padding:15px 0; margin-bottom:40px;">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <a href="../index.html" style="color:white; text-decoration:none; font-weight:600;">Accueil</a>
+      <a href="../supervised/index.html" style="color:white; text-decoration:none; font-weight:600;">Suivant : Modélisation Supervisée</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <h1>1. Préparation du Dataset</h1>
+    <p class="lead">
+      Projet de prédiction des ventes sur le dataset <strong>Global Superstore</strong> (51 290 commandes).<br>
+      Objectif : obtenir un dataset parfaitement propre, enrichi et optimisé pour le Machine Learning.
+    </p>
+
+    <div class="step">
+      <h2>Dataset Brut</h2>
+      <p>51 290 lignes × 24 colonnes initiales • Quelques valeurs manquantes mineures</p>
+      <div class="image">
+        <img src="images/dataset.png" alt="Dataset brut - aperçu des colonnes et NaN" />
+        <p>État initial du dataset</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <h2>Nettoyage & Feature Engineering</h2>
+      <ul>
+        <li>Imputation (médiane pour numériques, mode pour catégorielles)</li>
+        <li>Création de features temporelles : année, mois, jour de semaine, trimestre</li>
+        <li>Flags métier : <code>is_big_sale</code>, <code>is_high_discount</code>, <code>is_big_loss</code>, etc.</li>
+        <li>Aucune ligne supprimée → <strong>51 290 lignes conservées</strong></li>
+        <li><strong>Shape final : (51 290, 26)</strong> <span class="badge">100% propre</span></strong></li>
+      </ul>
+
+      <div class="image">
+        <img src="images/df_clean.png" alt="Dataset après nettoyage - 0 NaN" />
+        <p>Dataset final : 0 valeur manquante, 26 colonnes enrichies</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <h2>Analyse de Corrélation</h2>
+      <div class="image">
+        <img src="images/df_clean_correlation.png" alt="Matrice de corrélation" />
+        <p>Matrice de corrélation des variables numériques clés</p>
+      </div>
+      <p><strong>Insights majeurs :</strong></p>
+      <ul>
+        <li><strong>Shipping Cost → Sales</strong> : corrélation très forte (~0.config76)</li>
+        <li><strong>Discount → Profit</strong> : impact négatif marqué (-0.32)</li>
+        <li><strong>Profit → Sales</strong> : lien positif logique (0.48)</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h2>Sélection des Features (Feature Importance)</h2>
+      <p>Analyse via RandomForest → Top 12 features expliquent <strong>95.4% de l'importance totale</strong></p>
+      <div class="image">
+        <img src="images/12_FE.png" alt="Top 12 Features - Importance cumulée 95.4%" />
+        <p>Feature Importance – 12 variables suffisent pour capturer presque toute l'information</p>
+      </div>
+      <p class="badge" style="background:#4c00ff;">12 features sélectionnées → prêt pour modélisation légère & performante</p>
+    </div>
+
+    <div class="code">
+      <pre><code class="language-python"># Extrait du pipeline complet (prep.py)
+df = pd.read_csv("assets/datasets/GlobalSuperstore.csv", encoding="latin1")
+
+# Feature Engineering
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+df['Ship Date'] = pd.to_datetime(df['Ship Date'])
+df['Shipping_Delay_Days'] = (df['Ship Date'] - df['Order Date']).dt.days
+
+df['Order_Year'] = df['Order Date'].dt.year
+df['Order_Month'] = df['Order Date'].dt.month
+df['Order_DayOfWeek'] = df['Order Date'].dt.dayofweek
+df['Order_Quarter'] = df['Order Date'].dt.quarter
+
+# Flags
+df['is_big_sale'] = (df['Sales'] > df['Sales'].quantile(0.9)).astype(int)
+df['is_high_discount'] = (df['Discount'] > 0.3).astype(int)
+df['is_big_loss'] = (df['Profit'] < df['Profit'].quantile(0.1)).astype(int)
+
+# Imputation finale
+from sklearn.impute import SimpleImputer
+num_cols = df.select_dtypes(include=['float64','int64']).columns
+cat_cols = df.select_dtypes(include=['object']).columns
+
+df[num_cols] = SimpleImputer(strategy='median').fit_transform(df[num_cols])
+df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
+
+print(f"Shape final : {df.shape} | NaN : {df.isna().sum().sum()}")
+# → (51290, 26) | NaN : 0
+
+df.to_csv("assets/datasets/Global_Superstore_100%_PROPRE_51290.csv", index=False)
+      </code></pre>
+    </div>
+
+    <div style="text-align:center; margin:60px 0; padding:40px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:16px;">
+      <h2 style="color:rgb(236, 236, 236);">Dataset parfaitement prêt !</h2>
+      <p style="font-size:1.3rem; margin-top:15px;">
+        51 290 lignes • 26 colonnes • 0 NaN • 12 features clés sélectionnées<br>
+        <strong>Prêt pour la modélisation supervisée</strong>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
