@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio Machine Learning | Global Superstore</title>
-  
+
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css"/>
-  
+  <link rel="stylesheet" href="style.css" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
   <!-- Hero Section -->
@@ -26,7 +29,13 @@
         Un parcours complet en Machine Learning :<br>
         du nettoyage des données aux modèles avancés de régression et classification
       </p>
-      <a href="preparation/prep.html" class="btn btn-primary">Commencer l'Exploration →</a>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="preparation/prep.html" class="btn btn-primary">Commencer l'Exploration →</a>
+        <a href="https://app-ml-superstore-jyqncovjxbumflnd4vagtw.streamlit.app/" target="_blank"
+          class="btn btn-primary" style="background: linear-gradient(135deg, #ff4785, #ff6b9d); border-color: #ff4785;">
+          🚀 Application Interactive (Streamlit)
+        </a>
+      </div>
     </div>
   </header>
 
@@ -34,9 +43,9 @@
   <section class="overview">
     <div class="container">
       <h2>Sections du Projet</h2>
-      
+
       <div class="cards">
-        
+
         <!-- Card 1: Data Preparation -->
         <a href="preparation/prep.html" class="card">
           <div class="card-icon">1</div>
@@ -45,7 +54,9 @@
             Nettoyage · Imputation · Encodage · Feature Engineering
           </p>
           <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted);">
-            <strong>🎯 Objectif :</strong> Transformer 51 290 commandes brutes en un dataset 100% propre et enrichi, prêt pour la modélisation. Création de 26 features optimisées dont 12 variables clés sélectionnées par Random Forest.
+            <strong>🎯 Objectif :</strong> Transformer 51 290 commandes brutes en un dataset 100% propre et enrichi,
+            prêt pour la modélisation. Création de 26 features optimisées dont 12 variables clés sélectionnées par
+            Random Forest.
           </p>
         </a>
 
@@ -58,7 +69,9 @@
             <strong>XGBoost · CatBoost · Stacking · Réseaux de neurones</strong>
           </p>
           <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted);">
-            <strong>🎯 Objectif :</strong> Prédire les ventes avec précision grâce à des modèles supervisés. Exploration des algorithmes linéaires, polynomiaux et basés sur les arbres pour atteindre les meilleures performances (R² jusqu'à 0.784).
+            <strong>🎯 Objectif :</strong> Prédire les ventes avec précision grâce à des modèles supervisés. Exploration
+            des algorithmes linéaires, polynomiaux et basés sur les arbres pour atteindre les meilleures performances
+            (R² jusqu'à 0.784).
           </p>
         </a>
 
@@ -71,14 +84,16 @@
             <strong>K-Means · DBSCAN · PCA · Segmentation RFM</strong>
           </p>
           <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--color-text-muted);">
-            <strong>🎯 Objectif :</strong> Découvrir des patterns cachés sans étiquettes. Identification de 3 profils clients distincts (Premium, Fidèle, À risque) pour des stratégies marketing ciblées et personnalisées.
+            <strong>🎯 Objectif :</strong> Découvrir des patterns cachés sans étiquettes. Identification de 3 profils
+            clients distincts (Premium, Fidèle, À risque) pour des stratégies marketing ciblées et personnalisées.
           </p>
         </a>
 
       </div>
 
       <!-- Project Stats -->
-      <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: var(--color-bg-card); border-radius: 20px; border: 2px solid var(--color-purple-medium);">
+      <div
+        style="margin-top: 4rem; text-align: center; padding: 3rem; background: var(--color-bg-card); border-radius: 20px; border: 2px solid var(--color-purple-medium);">
         <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--color-purple-light);">
           📊 Aperçu du Projet
         </h3>
@@ -103,21 +118,28 @@
       </div>
 
       <!-- Learning Journey -->
-      <div style="margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); border-radius: 20px; border-left: 6px solid var(--color-purple-medium);">
+      <div
+        style="margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); border-radius: 20px; border-left: 6px solid var(--color-purple-medium);">
         <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--color-purple-light);">
           🚀 Mon Parcours d'Apprentissage
         </h3>
         <p style="font-size: 1.1rem; line-height: 1.8; color: var(--color-text-secondary);">
-          Ce projet représente mon voyage complet dans le monde du Machine Learning. 
-          De la compréhension des données brutes à la construction de modèles prédictifs sophistiqués, 
+          Ce projet représente mon voyage complet dans le monde du Machine Learning.
+          De la compréhension des données brutes à la construction de modèles prédictifs sophistiqués,
           chaque étape m'a permis d'acquérir des compétences pratiques en :
         </p>
-        <ul style="margin-top: 1.5rem; font-size: 1.05rem; line-height: 2; color: var(--color-text-secondary); list-style-position: inside;">
-          <li><strong style="color: var(--color-purple-light);">Data Engineering</strong> : Nettoyage, imputation, transformation de variables</li>
-          <li><strong style="color: var(--color-purple-light);">Feature Engineering</strong> : Création de variables pertinentes et sélection automatisée</li>
-          <li><strong style="color: var(--color-purple-light);">Modélisation Supervisée</strong> : Régression linéaire, polynomiale, arbres de décision</li>
-          <li><strong style="color: var(--color-purple-light);">Modélisation Non Supervisée</strong> : Clustering, PCA, segmentation RFM</li>
-          <li><strong style="color: var(--color-purple-light);">Évaluation & Optimisation</strong> : Métriques, validation croisée, hyperparamètres</li>
+        <ul
+          style="margin-top: 1.5rem; font-size: 1.05rem; line-height: 2; color: var(--color-text-secondary); list-style-position: inside;">
+          <li><strong style="color: var(--color-purple-light);">Data Engineering</strong> : Nettoyage, imputation,
+            transformation de variables</li>
+          <li><strong style="color: var(--color-purple-light);">Feature Engineering</strong> : Création de variables
+            pertinentes et sélection automatisée</li>
+          <li><strong style="color: var(--color-purple-light);">Modélisation Supervisée</strong> : Régression linéaire,
+            polynomiale, arbres de décision</li>
+          <li><strong style="color: var(--color-purple-light);">Modélisation Non Supervisée</strong> : Clustering, PCA,
+            segmentation RFM</li>
+          <li><strong style="color: var(--color-purple-light);">Évaluation & Optimisation</strong> : Métriques,
+            validation croisée, hyperparamètres</li>
         </ul>
       </div>
 
@@ -132,4 +154,5 @@
   </footer>
 
 </body>
+
 </html>
