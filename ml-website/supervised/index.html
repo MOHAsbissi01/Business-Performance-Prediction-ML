@@ -1,130 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Supervised Learning | Global Superstore</title>
-  <!-- FIXED PATHS -->
-   <link rel="stylesheet" href="supervised.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apprentissage Supervisé | Global Superstore ML</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="supervised.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- Top Navigation -->
+  <!-- Navigation -->
   <nav class="top-nav">
     <div class="container">
-      <a href="../preparation/prep.html">← Data Preparation</a>
-      <a href="../index.html">Home</a>
-      <a href="../unsupervised/index.html">Next: Unsupervised →</a>
+      <a href="../preparation/prep.html" class="nav-link">← Préparation</a>
+      <span class="nav-title">Apprentissage Supervisé</span>
+      <a href="../unsupervised/index.html" class="nav-link">Apprentissage Non Supervisé →</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <header class="hero-section">
+  <header class="page-hero">
     <div class="container">
-      <h1>Supervised Learning</h1>
-      <p class="lead">
-        Using labeled data to predict <strong>Sales</strong> (Regression)<br>
-        and potentially classify customer segments (Classification – coming soon)
+      <div class="hero-badge">Étape 2</div>
+      <h1>Apprentissage Supervisé</h1>
+      <p class="hero-subtitle">
+        Prédire les ventes avec précision grâce à des modèles entraînés sur des données étiquetées
       </p>
-      <div class="stats">
-        <div class="stat">
-          <h3>51,235</h3>
-          <p>Cleaned Orders</p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value">51 235</span>
+          <span class="stat-label">Commandes nettoyées</span>
         </div>
-        <div class="stat">
-          <h3>16</h3>
-          <p>Features Used</p>
+        <div class="stat-item">
+          <span class="stat-value">16</span>
+          <span class="stat-label">Features utilisées</span>
         </div>
-        <div class="stat">
-          <h3>0.784</h3>
-          <p>Best R² (so far)</p>
+        <div class="stat-item">
+          <span class="stat-value">0.784</span>
+          <span class="stat-label">Meilleur R²</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">$110</span>
+          <span class="stat-label">MAE (Polynomial)</span>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <div class="container content">
+  <div class="container content-wrapper">
 
-    <section class="intro">
-      <h2>What is Supervised Learning?</h2>
-      <p>
-        In supervised learning, we train models on <strong>labeled data</strong> — each row has a known target (here: <code>Sales</code>).<br>
-        The model learns to map inputs → outputs and can then predict on new, unseen data.
+    <!-- Introduction -->
+    <section class="intro-section">
+      <h2>🎓 Qu'est-ce que l'Apprentissage Supervisé ?</h2>
+      <p class="section-intro">
+        L'apprentissage supervisé est une branche du Machine Learning où nous entraînons des modèles
+        sur des <strong>données étiquetées</strong> — chaque observation possède une <strong>cible connue</strong>
+        (ici : <code>Sales</code>). Le modèle apprend à mapper les entrées (features) vers la sortie (cible)
+        et peut ensuite prédire sur de nouvelles données jamais vues.
       </p>
-      <p>Two main tasks:</p>
-      <ul>
-        <li><strong>Regression</strong> → Predict continuous values (e.g., Sales amount)</li>
-        <li><strong>Classification</strong> → Predict categories (e.g., High/Low profit customer)</li>
-      </ul>
-    </section>
 
-    <!-- Regression Card -->
-    <section class="model-card">
-      <div class="card-header regression">
-        <h2>Regression Analysis</h2>
-        <span class="tag completed">Completed</span>
-      </div>
-      <div class="card-body">
-        <p>We built and compared multiple regression models to predict <strong>Sales</strong>:</p>
-        <ul>
-          <li>Linear Regression → R² = 0.673</li>
-          <li>Polynomial Regression (Degree 2 + Ridge) → <strong>R² = 0.784</strong></li>
-          <li>From-scratch Gradient Descent → matched scikit-learn!</li>
-          <li>Used BIC to prove Degree 2 is optimal</li>
-        </ul>
-        <p><strong>Winner:</strong> Polynomial Degree 2 + Ridge (MAE = $110.3)</p>
-        <a href="regression/index.html" class="btn primary">Explore Regression Models →</a>
-      </div>
-      <div class="card-image">
-        <img src="regression/images/polynomial_curves.png" alt="Polynomial vs Linear" />
-      </div>
-    </section>
+      <div class="task-grid">
+        <div class="task-card regression-card">
+          <h3>📈 Régression</h3>
+          <p>Prédire des <strong>valeurs continues</strong></p>
+          <ul>
+            <li>Exemple : Montant des ventes ($)</li>
+            <li>Modèles : Linéaire, Polynomial, XGBoost</li>
+            <li>Métrique : R², MAE, RMSE</li>
+          </ul>
+        </div>
 
-    <!-- Classification Card (Future) -->
-    <section class="model-card ">
-      <div class="card-header classification">
-        <h2>Classification (Coming Soon)</h2>
-        <span class="tag soon">In Progress</span>
+        <div class="task-card classification-card">
+          <h3>🎯 Classification</h3>
+          <p>Prédire des <strong>catégories discrètes</strong></p>
+          <ul>
+            <li>Exemple : Client Haute/Basse Valeur</li>
+            <li>Modèles : Logistic, Random Forest, SVM</li>
+            <li>Métrique : Accuracy, F1-Score, AUC</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body">
-        <p>Next: Predict customer segments or high-profit orders using:</p>
-        <ul>
-          <li>Logistic Regression</li>
-          <li>Random Forest Classifier</li>
-          <li>XGBoost + SHAP explanations</li>
-        </ul>
-        <a href="classification/index.html" class="btn secondary ">Explore Classification Models →</a>
-      </div>
-      <div class="card-image">
-        <img src="classification/images/classification_teaser.png" alt="Classification Teaser" />
+
+      <div class="insight-box">
+        <strong>💡 Dans ce projet :</strong> Nous nous concentrons sur la <em>régression</em>
+        pour prédire le montant exact des ventes. La classification viendra dans une prochaine version
+        pour identifier les segments clients à fort potentiel.
       </div>
     </section>
 
-
-    <!-- Final Ensemble Teaser -->
-    <section class="teaser">
-      <div class="container">
-        <h2>Next Level: The Final Ensemble</h2>
-        <p>
-          After regression, we combine the best models (Polynomial + Tree-based) into a <strong>voting/stacking ensemble</strong><br>
-          Expected performance: <strong>R² > 0.96</strong> and <strong>MAE < $55</strong>
+    <!-- Regression Section -->
+    <section class="model-section regression-section">
+      <div class="section-header">
+        <div class="header-content">
+          <h2>📊 Analyse de Régression</h2>
+          <span class="status-badge completed">Complété</span>
+        </div>
+        <p class="section-description">
+          Construction et comparaison de plusieurs modèles de régression pour prédire <strong>Sales</strong>
         </p>
-        <div class="coming-soon">
-          <h3>Coming in the next section</h3>
-          <p>Random Forest • XGBoost • LightGBM • Stacking • Final Champion Model</p>
+      </div>
+
+      <div class="model-cards-grid">
+
+        <!-- Linear Regression -->
+        <div class="model-card">
+          <div class="model-icon">📏</div>
+          <h4>Régression Linéaire</h4>
+          <div class="model-metrics">
+            <span class="metric">R² = <strong>0.673</strong></span>
+            <span class="metric">MAE = $155</span>
+          </div>
+          <p class="model-description">
+            Modèle de base simple, trouve la meilleure droite pour ajuster les données.
+            Performance correcte mais limitée par son incapacité à capturer les relations non-linéaires.
+          </p>
+        </div>
+
+        <!-- Polynomial Regression -->
+        <div class="model-card winner">
+          <div class="winner-badge">🏆 Champion</div>
+          <div class="model-icon">📐</div>
+          <h4>Régression Polynomiale (Degré 2) + Ridge</h4>
+          <div class="model-metrics">
+            <span class="metric highlight">R² = <strong>0.784</strong></span>
+            <span class="metric highlight">MAE = $110.3</span>
+          </div>
+          <p class="model-description">
+            Le meilleur modèle ! Capture les relations non-linéaires avec un degré 2 optimal
+            (validé par BIC). La régularisation Ridge évite le surapprentissage.
+          </p>
+        </div>
+
+        <!-- Gradient Descent -->
+        <div class="model-card">
+          <div class="model-icon">⚙️</div>
+          <h4>Gradient Descent (From Scratch)</h4>
+          <div class="model-metrics">
+            <span class="metric">R² = <strong>0.673</strong></span>
+            <span class="metric">Convergence ✓</span>
+          </div>
+          <p class="model-description">
+            Implémentation manuelle de la descente de gradient pour comprendre les bases de l'optimisation.
+            Réplique exactement les résultats de scikit-learn !
+          </p>
+        </div>
+
+      </div>
+
+      <div class="analysis-box">
+        <h4>🔬 Analyse Approfondie</h4>
+        <p>
+          Le <strong>degré 2</strong> a été choisi via le critère BIC (Bayesian Information Criterion)
+          qui pénalise la complexité du modèle. Des degrés supérieurs (3, 4) n'apportent pas d'amélioration
+          significative et augmentent le risque de surapprentissage.
+        </p>
+        <div class="image-preview">
+          <img src="regression/images/polynomial_curves.png" alt="Courbes polynomiales vs linéaire" />
+          <p class="image-caption">Comparaison visuelle : Polynomial Degré 2 vs Linéaire</p>
+        </div>
+      </div>
+
+      <div class="interpretation">
+        <strong>💬 Interprétation Approfondie :</strong><br><br>
+
+        <strong>Performance Quantitative :</strong><br>
+        Le passage de R² = 0.673 (linéaire) à R² = 0.784 (polynomial degré 2) représente une
+        <em>amélioration de +16.5%</em> dans l'explication de la variance. Concrètement, notre modèle polynomial
+        explique désormais <strong>78.4% de la variabilité des ventes</strong>, contre 67.3% pour le modèle
+        linéaire.<br><br>
+
+        <strong>Impact Business :</strong><br>
+        • <strong>Réduction de l'erreur MAE</strong> : $155 → $110.3 (−$44.7) signifie des prédictions ±29% plus
+        précises<br>
+        • <strong>Capture des non-linéarités</strong> : Le modèle polynomial détecte l'effet quadratique du discount
+        (petites remises = bon impact ; remises excessives = effondrement des ventes)<br>
+        • <strong>Fiabilité pour la décision</strong> : Une précision de ±$110 est acceptable pour des décisions
+        stratégiques (pricing, inventory planning)<br><br>
+
+        <strong>Perspective Technique :</strong><br>
+        Les 21.6% de variance non expliquée proviennent probablement de facteurs non capturés (tendances saisonnières,
+        promotions exceptionnelles, comportements clients imprévisibles). Un modèle ensemble (XGBoost + Random Forest)
+        pourrait atteindre R² > 0.96 en capturant ces patterns résiduels.
+      </div>
+
+      <a href="regression/index.html" class="btn btn-primary">Explorer les Modèles de Régression en Détail →</a>
+    </section>
+
+    <!-- Classification Section -->
+    <section class="model-section classification-section">
+      <div class="section-header">
+        <div class="header-content">
+          <h2>🎯 Classification</h2>
+          <span class="status-badge in-progress">En Cours</span>
+        </div>
+        <p class="section-description">
+          Prédire des segments clients ou identifier les commandes à fort profit
+        </p>
+      </div>
+
+      <div class="coming-soon-content">
+        <h3>Modèles à venir :</h3>
+        <ul class="models-list">
+          <li><strong>Régression Logistique</strong> : Classification binaire de base</li>
+          <li><strong>Random Forest Classifier</strong> : Ensemble d'arbres pour robustesse</li>
+          <li><strong>XGBoost</strong> : Boosting pour performance maximale</li>
+          <li><strong>SHAP Values</strong> : Interprétabilité des prédictions</li>
+        </ul>
+
+        <div class="teaser-image">
+          <img src="classification/images/classification_teaser.png" alt="Aperçu classification" />
+          <p class="image-caption">Aperçu : visualisation des classes de clients</p>
+        </div>
+      </div>
+
+      <a href="classification/index.html" class="btn btn-secondary disabled">Classification (Bientôt disponible)</a>
+    </section>
+
+    <!-- Ensemble Teaser -->
+    <section class="ensemble-teaser">
+      <h2>🚀 Prochaine Étape : Le Modèle Ensemble Champion</h2>
+      <p class="teaser-intro">
+        Après avoir exploré les modèles individuels, la prochaine étape consiste à combiner
+        les meilleurs d'entre eux dans un <strong>ensemble meta-model</strong>.
+      </p>
+
+      <div class="ensemble-preview">
+        <div class="ensemble-method">
+          <h4>Voting Ensemble</h4>
+          <p>Moyenne pondérée des prédictions de plusieurs modèles</p>
+        </div>
+        <div class="ensemble-method">
+          <h4>Stacking</h4>
+          <p>Méta-modèle qui apprend à combiner les prédictions de base</p>
+        </div>
+      </div>
+
+      <div class="expected-performance">
+        <h3>Performance Attendue :</h3>
+        <div class="perf-metrics">
+          <div class="perf-item">
+            <span class="perf-label">R²</span>
+            <span class="perf-value">&gt; 0.96</span>
+          </div>
+          <div class="perf-item">
+            <span class="perf-label">MAE</span>
+            <span class="perf-value">&lt; $55</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="models-to-combine">
+        <h4>Modèles à combiner :</h4>
+        <div class="models-badges">
+          <span class="model-badge">Polynomial Ridge</span>
+          <span class="model-badge">Random Forest</span>
+          <span class="model-badge">XGBoost</span>
+          <span class="model-badge">LightGBM</span>
+          <span class="model-badge">CatBoost</span>
         </div>
       </div>
     </section>
 
   </div>
 
-  <footer class="page-footer">
+  <!-- Footer -->
+  <footer>
     <div class="container">
-      <p>Global Superstore Sales Prediction Project © 2025</p>
+      <p>© 2025 Global Superstore - Portfolio Machine Learning</p>
     </div>
   </footer>
 
 </body>
+
 </html>
