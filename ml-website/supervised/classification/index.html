@@ -732,6 +732,41 @@
         <p class="image-caption">Figure 3 : Feature Importances — Top 15 features contributives</p>
       </div>
 
+      <div class="image-wrapper">
+        <img src="images/CatboostFeatureImportance.png" alt="CatBoost Feature Importance Analysis" />
+        <p class="image-caption">Figure 4 : Analyse Détaillée des Features Importantes — CatBoost</p>
+      </div>
+
+      <h3>📊 Analyse du Recall par Classe</h3>
+
+      <div class="image-wrapper">
+        <img src="images/CatboostReacall.png" alt="CatBoost Recall par Classe" />
+        <p class="image-caption">Figure 5 : Recall Initial par Classe — CatBoost Baseline</p>
+      </div>
+
+      <div class="image-wrapper">
+        <img src="images/CatboostReacallOptimise.png" alt="CatBoost Recall Optimisé" />
+        <p class="image-caption">Figure 6 : Recall par Classe Après Optimisation Hyperopt — Amélioration de la
+          Sensibilité</p>
+      </div>
+
+      <div class="methodology-box">
+        <h4 style="color: #f093fb; margin-top: 0;">📈 Impact de l'Optimisation sur le Recall</h4>
+        <p>
+          L'optimisation via <strong>Hyperopt</strong> a permis d'améliorer significativement le <strong>recall</strong>
+          pour chaque classe, particulièrement pour la classe Medium qui était initialement la plus difficile à
+          détecter.
+        </p>
+        <p style="margin-top: 15px;">
+          <strong>Amélioration du Recall :</strong><br>
+          • <strong>Classe Low :</strong> Meilleure détection des commandes peu rentables<br>
+          • <strong>Classe Medium :</strong> Réduction des confusions avec Low et High<br>
+          • <strong>Classe High :</strong> Maintien d'un excellent taux de détection des commandes rentables<br><br>
+          Cette amélioration du recall signifie que le modèle optimisé <em>manque moins de vraies instances</em>
+          de chaque classe, essentiel pour des décisions business fiables.
+        </p>
+      </div>
+
       <div class="insight-box">
         <strong>🎯 Features les Plus Importantes (CatBoost) :</strong><br><br>
         1. <strong>Sales</strong> : Sans surprise, le montant des ventes est fortement corrélé au profit<br>
